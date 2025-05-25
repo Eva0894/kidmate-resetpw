@@ -46,11 +46,12 @@
     <h1>Redirecting...</h1>
     <p>Hang tight! We're opening the app for you.</p>
     <script>
-      const p = new URLSearchParams(window.location.search);
+      const hash = window.location.hash.slice(1);
+      const p = new URLSearchParams(hash);
       const access = p.get('access_token');
       const refresh = p.get('refresh_token');
       const type = p.get('type') || 'recovery';
-
+    
       if (access && refresh) {
         const deeplink = `kidmate://reset-password-confirm?access_token=${access}&refresh_token=${refresh}&type=${type}`;
         window.location.href = deeplink;
